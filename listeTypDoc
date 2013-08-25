@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<listeTypDoc>
+
+  <TypDoc>Bande dessinée ado</TypDoc>
+
+  <TypDoc>Bande dessinée adulte</TypDoc>
+
+  <TypDoc>Bande dessinée jeunesse</TypDoc>
+
+  <TypDoc>CD adulte</TypDoc>
+
+  <TypDoc>CD jeunesse</TypDoc>
+
+  <TypDoc>DVD &lt; 13 ans</TypDoc>
+
+  <TypDoc>DVD &gt;  12 ans</TypDoc>
+
+  <TypDoc>DVD tous publics</TypDoc>
+
+  <TypDoc>Livre ado</TypDoc>
+
+  <TypDoc>Livre adulte</TypDoc>
+
+  <TypDoc>Livre en gros caractères</TypDoc>
+
+  <TypDoc>Livre en langue étrangère</TypDoc>
+
+  <TypDoc>Livre Fonds spécialisés</TypDoc>
+
+  <TypDoc>Livre jeunesse</TypDoc>
+
+  <TypDoc>Livre sonore adulte</TypDoc>
+
+  <TypDoc>Livre sonore jeunesse</TypDoc>
+
+  <TypDoc>Nouveauté</TypDoc>
+
+  <TypDoc>Nouveauté musique</TypDoc>
+
+  <TypDoc>Numérique et multimédia adulte</TypDoc>
+
+  <TypDoc>Revue adulte</TypDoc>
+
+  <TypDoc>Revue non empruntable</TypDoc>
+
+  <TypDoc>Usuels</TypDoc>
+
+  <TypDoc>VHS &gt;  12 ans</TypDoc>
+
+</listeTypDoc>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="testAngularJS">
+<head>
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/x2js/xml2json.js"></script>
+<script src="dataSource4D.js"></script>
+<script src="sample-controller.js"></script>
+
+<style>
+.center
+    {
+        text-align:center;    
+        margin-left:auto;
+        margin-right:auto;
+        width:70%;
+        background-color:#b0e0e6;
+    } 
+</style>
+</head>
+<body>
+<div ng-controller="jsonXML">
+    
+    <select ng-model="TypDocSel" ng-options="c for c in TypDoc"></select><br>
+    
+    <button ng-click="listeTypDoc()">charger listeTypDoc</button><br/><br/>
+    
+    <button ng-click="Post4D()">Post4D</button><br/><br/>
+    
+    <div class="center"><br/>
+    XML<br/><textarea cols="60" rows="15" ng-model="xml"></textarea><br/>
+    <button ng-click="convert2json()">Convert2JSon</button><br/><br/>
+    </div>
+    
+    <div class="center">
+    JSon<br/><textarea cols="60" rows="15" ng-model="json"></textarea><br/>
+    <button ng-click="convert2XML()">Convert2XML</button><br/><br/>
+    </div>
+    
+    <div class="center">
+    <button ng-click="clearAll()">Clear all</button><br/><br/>
+    </div>
+</div>
+</body>
+</html>
