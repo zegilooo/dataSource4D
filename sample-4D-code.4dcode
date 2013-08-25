@@ -1,0 +1,75 @@
+﻿  // Méthode base Sur connexion Web
+
+C_TEXTE($1;$2;$3;$4;$5;$6)
+C_TEXTE($URL)
+$URL:=$1
+
+APPELER SUR ERREUR("Gen_error")
+
+Au cas ou 
+: ($URL="/Post4D@")
+
+TABLEAU TEXTE($tt_recup;0)
+C_TEXTE($ref_XML;$ref_XML_Enfant)
+C_TEXTE($enfantNom;$valeur)
+C_TEXTE($corps)
+
+WEB LIRE CORPS HTTP($corps)
+FIXER TEXTE DANS CONTENEUR($2)
+$ref_XML:=DOM Analyser variable XML($corps)
+$ref_XML_Enfant:=DOM Lire premier element XML enfant($ref_XML;$enfantNom;$valeur)
+AJOUTER A TABLEAU($tt_recup;$valeur)
+$ref_XML_Suivant:=$ref_XML_Enfant
+Repeter 
+$ref_XML_Suivant:=DOM Lire element XML frere suivant($ref_XML_Suivant)
+Si (ok=1)
+DOM LIRE VALEUR ELEMENT XML($ref_XML_Suivant;$valeur)
+AJOUTER A TABLEAU($tt_recup;$valeur)
+Fin de si 
+Jusque (ok=0)
+DOM FERMER XML($ref_XML)
+
+$ref_XML:=DOM Creer ref XML("ok")
+DOM ECRIRE VALEUR ELEMENT XML($ref_XML;1)
+DOM EXPORTER VERS VARIABLE($ref_XML;$XML)
+DOM FERMER XML($ref_XML)
+
+AJOUTER A TABLEAU($tnoms;"Content-Type")
+AJOUTER A TABLEAU($tvaleurs;" application/xml; charset=utf-8")
+WEB FIXER ENTETE HTTP($tnoms;$tvaleurs)
+WEB ENVOYER TEXTE($XML)
+  //TRACE
+: ($URL="/listeTypDoc")
+
+TABLEAU TEXTE($TT_listeTypDoc;0)
+TABLEAU TEXTE($tnoms;0)
+TABLEAU TEXTE($tvaleurs;0)
+C_TEXTE($ref_XML)
+C_TEXTE($refBook)
+C_TEXTE($XML)
+C_BLOB($BLOB)
+
+TOUT SELECTIONNER([Ouvrages])
+VALEURS DISTINCTES([Ouvrages]Type de document;$TT_listeTypDoc)
+
+$ref_XML:=DOM Creer ref XML("listeTypDoc")
+
+Boucle ($i;1;Taille tableau($TT_listeTypDoc))
+Si (Longueur($TT_listeTypDoc{$i})>0)
+$refNewElement:=DOM Creer element XML($ref_XML;"TypDoc")
+DOM ECRIRE VALEUR ELEMENT XML($refNewElement;$TT_listeTypDoc{$i})
+Fin de si 
+Fin de boucle 
+
+DOM EXPORTER VERS VARIABLE($ref_XML;$XML)
+DOM FERMER XML($ref_XML)
+
+FIXER TEXTE DANS CONTENEUR($XML)
+
+AJOUTER A TABLEAU($tnoms;"Content-Type")
+AJOUTER A TABLEAU($tvaleurs;" application/xml; charset=utf-8")
+WEB FIXER ENTETE HTTP($tnoms;$tvaleurs)
+WEB ENVOYER TEXTE($XML)
+
+Fin de cas 
+APPELER SUR ERREUR("")
